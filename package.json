@@ -1,0 +1,28 @@
+{
+  "name": "frontend-boilerplate",
+  "version": "0.0.1",
+  "description": "frontend-boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js --inspect"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrkhnj/portal-frontend-boilerplate.git"
+  },
+  "author": "honjo hiroki",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/next": "^2.4.9",
+    "@types/react": "^16.3.10",
+    "@types/react-redux": "^5.0.16",
+    "@zeit/next-typescript": "^0.1.1",
+    "next": "^5.1.0",
+    "next-routes": "^1.4.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {}
+}
