@@ -24,6 +24,7 @@
     ]
   },
   "exclude": [
-    ".next"
+    ".next",
+    "./node_modules/next-routes/typings/tests"
   ]
 }

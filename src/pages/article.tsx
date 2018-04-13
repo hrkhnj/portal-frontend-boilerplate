@@ -2,16 +2,20 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { Link } from '../routes'
 
-interface props {
+interface IUrl {
     url: object;
 }
 
-class Article extends React.Component<props, {}> {
-    render () {
+interface IProps {
+    url: IUrl;
+}
+
+class Article extends React.Component<IProps, {}> {
+    public render() {
         return (
             <Layout>
                 <h1>article { this.props.url.query.id }</h1>
-                <Link route='index'>
+                <Link route="index">
                     <a>
                         <p> to Top</p>
                     </a>

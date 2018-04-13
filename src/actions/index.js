@@ -1,4 +1,4 @@
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
-  SHOW_NEW: 'SHOW_NEW'
+  SHOW_NEW: 'SHOW_NEW',
 }
