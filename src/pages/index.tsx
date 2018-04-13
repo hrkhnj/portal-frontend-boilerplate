@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { Link } from '../routes'
 
 class Index extends React.Component {
-    render () {
+    public render() {
         return (
             <Layout>
                 <h1>Article List</h1>

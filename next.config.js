@@ -3,5 +3,5 @@ module.exports = withTypescript({
     webpack(config, options) {
         // if (options.isServer) config.plugins.push(new ForkTsCheckerWebpackPlugin())
         return config
-    }
+    },
 })
