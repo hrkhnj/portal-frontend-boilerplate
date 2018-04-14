@@ -1,4 +1,7 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import withRedux from '../utils/withRedux'
+import { initStore } from '../store'
 import Layout from '../components/Layout'
 import { Link } from '../routes'
 
@@ -38,4 +41,9 @@ class Article extends React.Component<IProps, {}> {
     }
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//     }
+// }
 export default Article
+// export default withRedux(initStore, null, mapDispatchToProps)(Article)
