@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import { Link } from '../routes'
 
 interface IUrl {
-    url: object;
+    query: object;
 }
 
 interface IProps {
@@ -14,7 +14,7 @@ class Article extends React.Component<IProps, {}> {
     public render() {
         return (
             <Layout>
-                <h1>article { this.props.url.query.id }</h1>
+                <h1>article vbnm { this.props.url.query.id }</h1>
                 <Link route="index">
                     <a>
                         <p> to Top</p>
