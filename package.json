@@ -4,7 +4,7 @@
   "description": "frontend-boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js --inspect",
+    "start": "node --inspect --debug-brk server.js",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "repository": {
