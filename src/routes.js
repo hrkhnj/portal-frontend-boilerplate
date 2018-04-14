@@ -5,7 +5,7 @@ const routes = new Routes()
 
 routes
 .add('index', '/')
-.add('article', '/article/:id')
+.add('article', '/article/:articleId', 'article')
 
 // TODO
 // export default routes

@@ -11,13 +11,26 @@ interface IProps {
 }
 
 class Article extends React.Component<IProps, {}> {
+    public static async getInitialProps(args) {
+        const isServer = typeof window === 'undefined'
+        if (isServer) {
+            return {
+                isServer,
+                url: {
+                    args: args.query,
+                },
+            }
+        } else {
+            return {...args, isServer}
+        }
+    }
     public render() {
         return (
-            <Layout>
-                <h1>article vbnm { this.props.url.query.id }</h1>
+            <Layout {...this.props}>
+                <h1>Article Detail (articleId: { this.props.url.query.articleId })</h1>
                 <Link route="index">
                     <a>
-                        <p> to Top</p>
+                        <p>&lt;&lt; Back to Top</p>
                     </a>
                 </Link>
             </Layout>
