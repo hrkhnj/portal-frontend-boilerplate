@@ -1,6 +1,10 @@
 import React from 'react'
 
-class Layout extends React.Component {
+interface IProp {
+  isServer: boolean,
+}
+
+class Layout extends React.Component<IProp> {
   constructor(props) {
     super(props)
   }

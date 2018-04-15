@@ -4,7 +4,7 @@ import reducer from './reducer/index'
 // import { composeWithDevTools } from 'redux-devtools-extension'
 // import thunkMiddleware from 'redux-thunk'
 
-const initialStateDefault = {
+export const initialStateDefault = {
     count: 2,
     articles: [
         {articleId: 1},
@@ -16,13 +16,11 @@ export const actionTypes = {
     AddArticle: 'AddArticle',
 }
 
-// REDUCERS
-
 // todo when use redux-thunk
 // export const addArticle = () => dispatch => {
 //     return dispatch({ type: actionTypes.AddArticle })
 // }
-export const addArticle = (e) => {
+export const addArticle = () => {
     return { type: actionTypes.AddArticle }
 }
 
