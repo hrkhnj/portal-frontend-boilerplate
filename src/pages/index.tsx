@@ -1,7 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from '../utils/withRedux'
-import { initStore, addArticle } from '../store'
+import { initStore } from '../store'
+import { addArticle } from '../actions/index'
 import Layout from '../components/Layout'
 import routes from '../routes'
 

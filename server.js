@@ -8,7 +8,7 @@ const {createServer} = require('http')
 
 const app = next({
   dev: process.env.NODE_ENV !== 'production',
-  dir: './src',
+  dir: './src'
 })
 
 const handler = routes.getRequestHandler(app)
