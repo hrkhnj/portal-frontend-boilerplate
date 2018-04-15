@@ -9,19 +9,23 @@ const { Link } = routes
 interface ArticleProps {
     isServer: boolean,
     articleId: number;
+    articleTitle: string;
 }
 
 class Article extends React.Component<ArticleProps> {
-    public static async getInitialProps({isServer, query}) {
+    public static async getInitialProps({isServer, query, store}) {
+        const article = store.getState().articles[query.articleId]
         return {
             isServer,
-            articleId: query.articleId,
+            articleId: article.id,
+            articleTitle: article.title,
         }
     }
     public render() {
         return (
             <Layout {...this.props}>
                 <h1>Article Detail (articleId: { this.props.articleId })</h1>
+                <p>title: {this.props.articleTitle}</p>
                 <Link route="index">
                     <a>
                         <p>&lt;&lt; Back to Top</p>

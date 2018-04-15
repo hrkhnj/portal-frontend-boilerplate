@@ -38,11 +38,12 @@ class Index extends React.Component<IndexProps> {
                     this.props.addArticle()
                 }}>Add Article</button>
                 <ul>
-                    {this.props.articles.map((data) => {
+                    {Object.keys(this.props.articles).map((i) => {
+                        const data = this.props.articles[i]
                         return <li>
-                            <Link route="article" params={{articleId: data.articleId}}>
+                            <Link route="article" params={{articleId: data.id}}>
                                 <a>
-                                    <p>article {data.articleId} title</p>
+                                    <p>article {data.id} 「{data.title}」</p>
                                 </a>
                             </Link>
                             <Link route={`article/${data.articleId}`}>
