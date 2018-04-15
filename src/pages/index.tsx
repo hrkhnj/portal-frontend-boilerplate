@@ -7,18 +7,22 @@ import routes from '../routes'
 
 const { Link } = routes
 
-interface article {
-    articleId: number,
+interface ContextObject {
+    store,
+    initialState,
+    isServer,
+    addArticle: () => {}
 }
 
-interface Props {
+interface IndexProps {
     isServer: boolean,
-    addArticle: Function,
-    articles: Array<article>,
+    addArticle: () => {},
+    articles: Article[],
 }
 
-class Index extends React.Component<Props> {
-    public static async getInitialProps({store, isServer, initialState, addArticle}) {
+class Index extends React.Component<IndexProps> {
+    // tslint:disable-next-line: no-shadowed-variable
+    public static async getInitialProps({store, isServer, addArticle}: ContextObject) {
         return {
             isServer,
             articles: store.getState().articles,
