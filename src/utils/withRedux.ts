@@ -23,8 +23,8 @@ export default (...args) => (Component) => {
     // First argument is initStore, the rest are redux connect arguments and get passed
     const [initStore, ...connectArgs] = args
 
-    const ComponentWithRedux = (props = {}) => {
-        const { store, initialProps, initialState } = props
+    const ComponentWithRedux: ReduxComponent = (props = {}) => {
+        const { store, initialProps, initialState }: ProviderComponentProps = props
 
         // Connect page to redux with connect arguments
         const ConnectedComponent = connect.apply(null, connectArgs)(Component)

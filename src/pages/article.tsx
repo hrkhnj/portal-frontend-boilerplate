@@ -1,19 +1,23 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
-import withRedux from '../utils/withRedux'
-import { initStore } from '../store'
 import Layout from '../components/Layout'
-import { Link } from '../routes'
+import routes from '../routes'
 
-interface IUrl {
-    query: object;
+const { Link } = routes
+
+interface Query {
+    articleId: number
 }
 
-interface IProps {
-    url: IUrl;
+interface Url {
+    query: Query
 }
 
-class Article extends React.Component<IProps, {}> {
+interface Props {
+    isServer: boolean,
+    url: Url;
+}
+
+class Article extends React.Component<Props> {
     public static async getInitialProps(args) {
         const isServer = typeof window === 'undefined'
         if (isServer) {
