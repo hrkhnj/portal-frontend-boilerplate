@@ -6,10 +6,10 @@ import reducer from './reducers/index'
 
 export const initialStateDefault = {
     count: 2,
-    articles: [
-        {articleId: 1},
-        {articleId: 2},
-    ],
+    articles: {
+        0: {id: 0, title: 'Article_0'},
+        1: {id: 1, title: 'Article_1'},
+    },
 }
 
 export const initStore = (initialState = initialStateDefault) => {
