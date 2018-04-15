@@ -16,14 +16,13 @@ export const actionTypes = {
     AddArticle: 'AddArticle',
 }
 
-// todo when use redux-thunk
+// [todo] when use redux-thunk
 // export const addArticle = () => dispatch => {
 //     return dispatch({ type: actionTypes.AddArticle })
 // }
 export const addArticle = () => {
     return { type: actionTypes.AddArticle }
 }
-
 
 export const initStore = (initialState = initialStateDefault) => {
     const store = createStore(reducer, initialState === null ? initialStateDefault : initialState)

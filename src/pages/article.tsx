@@ -12,12 +12,12 @@ interface Url {
     query: Query
 }
 
-interface Props {
+interface ArticleProps {
     isServer: boolean,
     url: Url;
 }
 
-class Article extends React.Component<Props> {
+class Article extends React.Component<ArticleProps> {
     public static async getInitialProps(args) {
         const isServer = typeof window === 'undefined'
         if (isServer) {
