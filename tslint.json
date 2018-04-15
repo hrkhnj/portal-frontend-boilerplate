@@ -11,7 +11,8 @@
     "rules": {
         "semicolon": [false, "never"],
         "quotemark": [true, "single", "jsx-double"],
-        "indent": [true, "spaces", 4]
+        "indent": [true, "spaces", 4],
+        "object-literal-sort-keys": [false],
     },
     "rulesDirectory": []
 }

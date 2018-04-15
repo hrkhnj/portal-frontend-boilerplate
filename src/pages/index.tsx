@@ -3,10 +3,21 @@ import { bindActionCreators } from 'redux'
 import withRedux from '../utils/withRedux'
 import { initStore, addArticle } from '../store'
 import Layout from '../components/Layout'
-import { Link } from '../routes'
+import routes from '../routes'
 
+const { Link } = routes
 
-class Index extends React.Component {
+interface article {
+    articleId: number,
+}
+
+interface Props {
+    isServer: boolean,
+    addArticle: Function,
+    articles: Array<article>,
+}
+
+class Index extends React.Component<Props> {
     public static async getInitialProps({store, isServer, initialState, addArticle}) {
         return {
             isServer,
