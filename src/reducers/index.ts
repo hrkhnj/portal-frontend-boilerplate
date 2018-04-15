@@ -1,4 +1,5 @@
-import { actionTypes, initialStateDefault } from '../store'
+import { initialStateDefault } from '../store'
+import { actionTypes } from '../actions/index'
 
 export default (state = initialStateDefault, action) => {
     switch (action.type) {
