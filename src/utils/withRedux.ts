@@ -34,7 +34,7 @@ export default (...args) => (Component) => {
         return React.createElement(
             Provider,
             { store: store && store.dispatch ? store : getOrCreateStore(initStore, initialState) },
-            React.createElement(ConnectedComponent, initialProps)
+            React.createElement(ConnectedComponent, initialProps),
         )
     }
 
@@ -50,7 +50,7 @@ export default (...args) => (Component) => {
         return {
             store,
             initialState: store.getState(),
-            initialProps
+            initialProps,
         }
     }
 
