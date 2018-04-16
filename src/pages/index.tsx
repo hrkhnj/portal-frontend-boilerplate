@@ -46,9 +46,9 @@ class Index extends React.Component<IndexProps> {
                                     <p>article {data.id} 「{data.title}」</p>
                                 </a>
                             </Link>
-                            {/* <Link route="article/{data.id}">
+                            {/* <Link route={`/article/${data.id}`}>
                                 <a>
-                                    <p>[fail-single] article {data.id} title</p>
+                                    <p>article {data.id} 「{data.title}」</p>
                                 </a>
                             </Link> */}
                         </li>
