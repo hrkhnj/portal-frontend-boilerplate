@@ -7,8 +7,8 @@ import reducer from './reducers/index'
 export const initialStateDefault = {
     count: 2,
     articles: {
-        0: {id: 0, title: 'Article_0'},
-        1: {id: 1, title: 'Article_1'},
+        0: {id: '0', title: 'Article_0'},
+        1: {id: '1', title: 'Article_1'},
     },
 }
 

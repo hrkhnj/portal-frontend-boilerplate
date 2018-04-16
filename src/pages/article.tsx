@@ -14,7 +14,7 @@ interface ArticleProps {
 
 class Article extends React.Component<ArticleProps> {
     public static async getInitialProps({isServer, query, store}) {
-        const article = store.getState().articles[query.articleId]
+        const article = store.getState().articles[query.id]
         return {
             isServer,
             articleId: article.id,

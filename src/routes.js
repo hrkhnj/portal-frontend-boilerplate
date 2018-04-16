@@ -3,7 +3,7 @@ const routes = new Routes()
 
 routes
 .add('index', '/')
-.add('article', '/article/:articleId', 'article')
+.add('article', '/article/:id', 'article')
 
 // TODO
 // export default routes
