@@ -24,7 +24,7 @@ class Article extends React.Component<ArticleProps> {
     public render() {
         return (
             <Layout {...this.props}>
-                <h1>Article Detail (articleId: { this.props.articleId })</h1>
+                <h1>Article Detail (articleId: {this.props.articleId})</h1>
                 <p>title: {this.props.articleTitle}</p>
                 <Link route="index">
                     <a>

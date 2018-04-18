@@ -34,9 +34,7 @@ class Index extends React.Component<IndexProps> {
         return (
             <Layout {...this.props}>
                 <h1>Article List</h1>
-                <button onClick={() => {
-                    this.props.addArticle()
-                }}>Add Article</button>
+                <button onClick={() => {this.props.addArticle()}}>Add Article</button>
                 <ul>
                     {Object.keys(this.props.articles).map((i) => {
                         const data = this.props.articles[i]
