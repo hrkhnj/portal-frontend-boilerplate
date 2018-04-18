@@ -57,7 +57,7 @@ class Index extends React.Component<IndexProps> {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         articles: state.articles,
     };

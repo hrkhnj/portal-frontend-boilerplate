@@ -15,8 +15,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "typeRoots": [
-      "./node_modules/@types",
-      "./src/definition"
+      "../node_modules/@types",
+      "./definition"
     ],
     "lib": [
       "dom",
@@ -25,8 +25,8 @@
     ]
   },
   "exclude": [
-    "./node_modules",
-    "src/.next",
-    "./node_modules/next-routes/typings/tests"
+    "../node_modules",
+    ".next",
+    "../node_modules/next-routes/typings/tests"
   ]
 }
