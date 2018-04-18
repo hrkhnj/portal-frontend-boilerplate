@@ -28,8 +28,8 @@
     "../definition"
   ],
   "exclude": [
-    "../node_modules",
     ".next",
+    "../node_modules",
     "../node_modules/next-routes/typings/tests"
   ]
 }
