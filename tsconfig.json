@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "typeRoots": [
       "./node_modules/@types",
-      "./src/typings"
+      "./src/definition"
     ],
     "lib": [
       "dom",
