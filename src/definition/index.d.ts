@@ -13,7 +13,3 @@ interface Article {
     id: string,
     title: string,
 }
-
-declare var loggercc: {log: () => void}
-
-declare var loggercc: {log: () => void}
