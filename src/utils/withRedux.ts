@@ -1,4 +1,5 @@
 import React from 'react'
+import { Store } from 'react-redux'
 import { connect, Provider } from 'react-redux'
 
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
@@ -6,7 +7,7 @@ const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
 // https://github.com/iliakan/detect-node
 const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]'
 
-const getOrCreateStore = (initStore, initialState) => {
+const getOrCreateStore = (initStore: any, initialState: any) => {
     // Always make a new store if server
     if (checkServer() || typeof window === 'undefined') {
         return initStore(initialState)
@@ -19,7 +20,7 @@ const getOrCreateStore = (initStore, initialState) => {
     return window[__NEXT_REDUX_STORE__]
 }
 
-export default (...args) => (Component) => {
+export default (...args: any[]) => (Component: any) => {
     // First argument is initStore, the rest are redux connect arguments and get passed
     const [initStore, ...connectArgs] = args
 

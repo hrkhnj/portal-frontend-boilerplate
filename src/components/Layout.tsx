@@ -5,7 +5,7 @@ interface IProp {
 }
 
 class Layout extends React.Component<IProp> {
-  constructor(props) {
+  constructor(props: IProp) {
     super(props)
   }
   public render() {

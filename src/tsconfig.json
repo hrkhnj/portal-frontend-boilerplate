@@ -11,6 +11,8 @@
     "noUnusedParameters": true,
     "removeComments": false,
     "preserveConstEnums": true,
+    "strict": true,
+    // "alwaysStrict": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "baseUrl": ".",
@@ -24,8 +26,8 @@
     ]
   },
   "include": [
-    "src/**/*",
-    "../definition"
+    "../definition",
+    "**/*"
   ],
   "exclude": [
     ".next",

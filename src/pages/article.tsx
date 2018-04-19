@@ -12,8 +12,8 @@ interface ArticleProps {
     articleTitle: string;
 }
 
-class Article extends React.Component<ArticleProps> {
-    public static async getInitialProps({isServer, query, store}) {
+class ArticleComponent extends React.Component<ArticleProps, {}, never> {
+    public static async getInitialProps({isServer, query, store}: pageArgs) {
         const article = store.getState().articles[query.id]
         return {
             isServer,
@@ -36,4 +36,4 @@ class Article extends React.Component<ArticleProps> {
     }
 }
 
-export default withRedux(initStore, null, null)(Article)
+export default withRedux(initStore, null, null)(ArticleComponent)

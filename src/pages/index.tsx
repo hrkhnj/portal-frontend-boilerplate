@@ -8,12 +8,7 @@ import routes from '../routes'
 
 const { Link } = routes
 
-interface ContextObject {
-    store,
-    initialState,
-    isServer,
-    addArticle: () => {}
-}
+// type Store<S> = Store<S>;
 
 interface IndexProps {
     isServer: boolean,
@@ -21,7 +16,7 @@ interface IndexProps {
     articles: Article[],
 }
 
-class Index extends React.Component<IndexProps> {
+class IndexComponent extends React.Component<IndexProps> {
     // tslint:disable-next-line: no-shadowed-variable
     public static async getInitialProps({store, isServer, addArticle}: ContextObject) {
         return {
@@ -31,22 +26,23 @@ class Index extends React.Component<IndexProps> {
         }
     }
     public render() {
+        const props: IndexProps = this.props;
         return (
-            <Layout {...this.props}>
+            <Layout {...props}>
                 <h1>Article List</h1>
-                <button onClick={() => {this.props.addArticle()}}>Add Article</button>
+                <button onClick={() => {props.addArticle()}}>Add Article</button>
                 <ul>
-                    {Object.keys(this.props.articles).map((i) => {
-                        const data = this.props.articles[i]
+                    {Object.keys(props.articles).map((key: any) => {
+                        const data = props.articles[key]
                         return <li>
                             <Link route="article" params={{id: data.id}}>
                                 <a>
-                                    <p>article {data.id} 「{data.title}」</p>
+                                    <p>article {data.id} 「{data.title}〝</p>
                                 </a>
                             </Link>
                             {/* <Link route={`/article/${data.id}`}>
                                 <a>
-                                    <p>article {data.id} 「{data.title}」</p>
+                                    <p>article {data.id} 「{data.title}〝</p>
                                 </a>
                             </Link> */}
                         </li>
@@ -57,16 +53,16 @@ class Index extends React.Component<IndexProps> {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
     return {
         articles: state.articles,
     };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         addArticle: bindActionCreators(addArticle, dispatch),
     }
 }
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(Index)
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(IndexComponent)

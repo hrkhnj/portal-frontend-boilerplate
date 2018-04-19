@@ -20,5 +20,5 @@
         "jsx-key": [false],
         "jsx-no-lambda": [false],
         "jsx-alignment": [false]
-    },
+    }
 }
