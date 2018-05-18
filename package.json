@@ -1,0 +1,36 @@
+{
+  "name": "portal-frontend-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mediba-system/portal-frontend-boilerplate"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "src/*",
+    "tests/*"
+  ],
+  "dependencies": {
+    "@types/node": "^10.0.2",
+    "concurrently": "^3.5.1",
+    "inversify": "^4.9.0",
+    "moment": "^2.22.1",
+    "moment-timezone": "^0.5.16",
+    "typescript": "^2.8.3"
+  },
+  "devDependencies": {
+    "lerna": "^2.11.0",
+    "yarn": "^1.6.0",
+    "redux-devtools-extension": "^2.13.2"
+ }
+}

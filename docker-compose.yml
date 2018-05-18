@@ -1,0 +1,61 @@
+#
+# ローカル開発環境（超シンプル構成）
+#
+version: '2'
+services:
+
+  node:
+    build: ./docker/node
+    container_name: portal_node_container
+    hostname: node
+    volumes:
+      - "./src:/var/www/sample"
+    working_dir: /var/www/sample
+    command: [sh, -c, 'npm install && npm run server:local']
+    links:
+      - mysql:mysql
+    ports:
+      - "3000:3000"
+
+  node_api:
+    build: ./docker/node
+    container_name: portal_api_container
+    hostname: node_api
+    volumes:
+      - "./src:/var/www/sample"
+    working_dir: /var/www/sample
+    command: [sh, -c, 'npm install && npm run api:local']
+    links:
+      - mysql:mysql
+    ports:
+      - "3001:3001"
+
+  nginx:
+    build: ./docker/nginx
+    container_name: portal_nginx_container
+    ports:
+      - "80:80"
+    depends_on:
+      - "node"
+    volumes:
+      - "./docker/nginx/conf.d:/etc/nginx/conf.d"
+      - "./docker/nginx/logs:/var/log/nginx"
+    links:
+      - mysql
+      - node
+
+  mysql:
+    build: ./docker/mysql
+    container_name: portal_mysql_container
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portal
+      MYSQL_USER: portal_user
+      MYSQL_PASSWORD: portal_password
+    volumes:
+      - ./docker/mysql/test/data:/var/lib/mysql
+      - ./docker/mysql/test/log:/var/log/mysql
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d

@@ -1,0 +1,10 @@
+{
+  "name": "@portal-frontend/api",
+  "version": "0.0.1",
+  "dependencies": {
+    "@portal-frontend/shared": "^0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

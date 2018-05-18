@@ -1,0 +1,4 @@
+node_modules
+src/server/.build
+src/api/.build
+src/.next

@@ -1,0 +1,15 @@
+{
+  "name": "study_universaljs",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "../node_modules/.bin/next build"
+  },
+  "dependencies": {
+    "@study_universaljs/api": "^0.0.1",
+    "@study_universaljs/server": "^0.0.1",
+    "@study_universaljs/shared": "^0.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
