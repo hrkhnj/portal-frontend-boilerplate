@@ -10,13 +10,15 @@ import compression from "compression";
 import bodyParser from "body-parser";
 import lusca from "lusca";
 import errorHandler from "errorhandler";
+//@ts-ignore
+import Router from "../shared/routes/index";
 
+const port = parseInt(process.env.PORT as string, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
-const handle = app.getRequestHandler();
-const port = parseInt(process.env.PORT as string, 10) || 3000;
+const handle = Router.getRequestHandler(app);
 
-//
+// 鯖
 app.prepare().then(() => {
 
     const server = express();
@@ -38,13 +40,9 @@ app.prepare().then(() => {
     server.disable("x-powered-by");
 
     // routing
-    server.get('*', (req, res) => {
+    server.get("*", (req, res) => {
         return handle(req, res);
     });
 
-    server.listen(port, (err: any) => {
-        if (err) {
-            throw err;
-        }
-    });
+    server.listen(port);
 });

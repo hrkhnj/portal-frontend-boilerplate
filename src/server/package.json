@@ -5,12 +5,12 @@
     "@portal-frontend/shared": "^0.0.1"
   },
   "scripts": {
+    "clean": "rm -rf ../.build",
     "build": "../../node_modules/.bin/tsc -p .",
     "watch": "../../node_modules/.bin/tsc -p . -w",
-    "clean": "rm -rf .build",
-    "reload": "../../node_modules/.bin/pm2 reload server",
-    "server": "../../node_modules/.bin/pm2 start .build/server/server.js --watch server",
-    "start:local": "NODE_ENV=local npm run clean; npm run build; ../../node_modules/.bin/concurrently \"npm run watch\" \"npm run server\""
+    "start": "cd ../; ../node_modules/.bin/pm2 start server/pm2/${NODE_ENV}.config.js",
+    "reload": "cd ../; ../node_modules/.bin/pm2 reload server/pm2/${NODE_ENV}.config.js",
+    "stop": "cd ../; ../node_modules/.bin/pm2 stop server/pm2/${NODE_ENV}.config.js"
   },
   "publishConfig": {
     "access": "public"

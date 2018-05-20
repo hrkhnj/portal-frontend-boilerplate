@@ -2,7 +2,11 @@
   "name": "study_universaljs",
   "version": "0.0.1",
   "scripts": {
-    "build": "../node_modules/.bin/next build"
+    "clean:next": "rm -rf .next",
+    "build:server": "cd ./server; npm run clean; npm run build",
+    "build:next": "npm run clean:next; ../node_modules/.bin/next build",
+    "start:server": "cd ./server; npm run start",
+    "stop:server": "cd ./server; npm run stop"
   },
   "dependencies": {
     "@study_universaljs/api": "^0.0.1",

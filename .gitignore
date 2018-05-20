@@ -1,4 +1,10 @@
 node_modules
-src/server/.build
-src/api/.build
+
+#build成果物
+src/.build
 src/.next
+src/logs
+
+#docker
+docker/mysql/test
+docker/nginx/logs
