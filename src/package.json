@@ -9,9 +9,9 @@
     "stop:server": "cd ./server; npm run stop"
   },
   "dependencies": {
-    "@study_universaljs/api": "^0.0.1",
-    "@study_universaljs/server": "^0.0.1",
-    "@study_universaljs/shared": "^0.0.1"
+    "@portal-frontend/api": "^0.0.1",
+    "@portal-frontend/server": "^0.0.1",
+    "@portal-frontend/shared": "^0.0.1"
   },
   "publishConfig": {
     "access": "public"
