@@ -7,13 +7,14 @@ services:
   node:
     build: ./docker/node
     container_name: portal_node_container
-    hostname: node
+    hostname: node_server
     volumes:
-      - "./src:/var/www/sample"
+      - "./:/var/www/sample"
     working_dir: /var/www/sample
-    command: [sh, -c, 'npm install && npm run server:local']
+    #command: [sh, -c, 'yarn install && cd src; npm run start:server']
     links:
       - mysql:mysql
+      - memcached:memcached
     ports:
       - "3000:3000"
 
@@ -24,9 +25,10 @@ services:
     volumes:
       - "./src:/var/www/sample"
     working_dir: /var/www/sample
-    command: [sh, -c, 'npm install && npm run api:local']
+#    command: [sh, -c, 'npm install && npm run api:local']
     links:
       - mysql:mysql
+      - memcached:memcached
     ports:
       - "3001:3001"
 
@@ -43,6 +45,7 @@ services:
     links:
       - mysql
       - node
+      - memcached:memcached
 
   mysql:
     build: ./docker/mysql
@@ -59,3 +62,22 @@ services:
       - ./docker/mysql/test/data:/var/lib/mysql
       - ./docker/mysql/test/log:/var/log/mysql
       - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: portal_phpmyadmin_contaier
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=portal_user
+      - PMA_PASSWORD=portal_password
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+
+  memcached:
+    container_name: portal_memcached_contaier
+    image: memcached:1.4-alpine
