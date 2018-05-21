@@ -3,9 +3,14 @@
   "version": "0.0.1",
   "scripts": {
     "clean:next": "rm -rf .next",
-    "build:server": "cd ./server; npm run clean; npm run build",
-    "build:next": "npm run clean:next; ../node_modules/.bin/next build",
-    "start:server": "cd ./server; npm run start",
+    "clean:server": "cd ./server; npm run clean",
+    "clean": "../node_modules/.bin/npm-run-all -p clean:*",
+
+    "build:server": "cd ./server; npm run build",
+    "build:next": "../node_modules/.bin/next build",
+    "build": "../node_modules/.bin/npm-run-all -p build:*",
+
+    "start:server": "npm run clean; npm run build; cd ./server; npm run start",
     "stop:server": "cd ./server; npm run stop"
   },
   "dependencies": {
