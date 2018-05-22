@@ -4,31 +4,33 @@
 version: '2'
 services:
 
-  node:
+  node_server:
     build: ./docker/node
-    container_name: portal_node_container
-    hostname: node_server
+    container_name: portal_server_container
+    hostname: portal_node_server
     volumes:
       - "./:/var/www/sample"
+      - "./docker/dummy:/var/www/sample/docker/mysql"
     working_dir: /var/www/sample
-    #command: [sh, -c, 'yarn install && cd src; npm run start:server']
+    command: [sh, -c, 'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server']
     links:
-      - mysql:mysql
-      - memcached:memcached
+      - mysql
+      - memcached
     ports:
       - "3000:3000"
 
   node_api:
     build: ./docker/node
     container_name: portal_api_container
-    hostname: node_api
+    hostname: portal_node_api
     volumes:
-      - "./src:/var/www/sample"
+      - ".:/var/www/sample"
+      - "./docker/dummy:/var/www/sample/docker/mysql"
     working_dir: /var/www/sample
-#    command: [sh, -c, 'npm install && npm run api:local']
+    command: [sh, -c, 'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api']
     links:
-      - mysql:mysql
-      - memcached:memcached
+      - mysql
+      - memcached
     ports:
       - "3001:3001"
 
@@ -38,14 +40,18 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - "node"
+      - node_server
+      - node_api
+      - phpmyadmin
     volumes:
       - "./docker/nginx/conf.d:/etc/nginx/conf.d"
-      - "./docker/nginx/logs:/var/log/nginx"
+      - "./docker/nginx/logs:/var/log/nginx/logs"
     links:
       - mysql
-      - node
-      - memcached:memcached
+      - node_server
+      - node_api
+      - phpmyadmin
+      - memcached
 
   mysql:
     build: ./docker/mysql
@@ -66,6 +72,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: portal_phpmyadmin_contaier
+    hostname: portal_phpmyadmin
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=mysql
@@ -74,7 +81,7 @@ services:
     links:
       - mysql
     ports:
-      - 8080:80
+      - 8081:8081
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
 

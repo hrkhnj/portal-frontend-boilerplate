@@ -5,23 +5,23 @@
 
 const path = require("path");
 
-const scriptFile = path.resolve(".build/server/server.js");
+const scriptFile = path.resolve(".build/api/server.js");
 
 module.exports = {
     apps: [{
         watch: true,
-        name: "portal_frontend_server",
+        name: "portal_frontend_api",
         script: scriptFile,
         watch: scriptFile, // localのみ
         cwd: path.resolve("."),
         exec_mode: "cluster",
         instances: 1,
         log_date_format: "YYYY-MM-DD HH:mm Z",
-        out_file: "../logs/server_ap.log",
-        error_file: "../logs/server_error.log",
+        out_file: "../logs/api_ap.log",
+        error_file: "../logs/api_error.log",
         env: {
             NODE_ENV: "local",
-            PORT: 3000,
+            PORT: 3001,
         },
         env_production:{
             NODE_ENV: "production"

@@ -4,6 +4,14 @@
   "dependencies": {
     "@portal-frontend/shared": "^0.0.1"
   },
+  "scripts": {
+    "clean": "rm -rf ../.build/api/",
+    "build": "../../node_modules/.bin/tsc -p .",
+    "watch": "../../node_modules/.bin/tsc -p . -w",
+    "start": "cd ../; ../node_modules/.bin/pm2 start api/pm2/${NODE_ENV}.config.js --no-daemon",
+    "reload": "cd ../; ../node_modules/.bin/pm2 reload api/pm2/${NODE_ENV}.config.js",
+    "stop": "cd ../; ../node_modules/.bin/pm2 stop api/pm2/${NODE_ENV}.config.js"
+  },
   "publishConfig": {
     "access": "public"
   }

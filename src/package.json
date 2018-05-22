@@ -4,14 +4,17 @@
   "scripts": {
     "clean:next": "rm -rf .next",
     "clean:server": "cd ./server; npm run clean",
+    "clean:api": "cd ./api; npm run clean",
     "clean": "../node_modules/.bin/npm-run-all -p clean:*",
-
-    "build:server": "cd ./server; npm run build",
     "build:next": "../node_modules/.bin/next build",
+    "build:server": "cd ./server; npm run build",
+    "build:api": "cd ./api; npm run build",
     "build": "../node_modules/.bin/npm-run-all -p build:*",
-
-    "start:server": "npm run clean; npm run build; cd ./server; npm run start",
-    "stop:server": "cd ./server; npm run stop"
+    "start:server": "cd ./server; npm run start",
+    "start:api": "cd ./api; npm run start",
+    "start": "../node_modules/.bin/npm-run-all -p start:*",
+    "stop:server": "cd ./server; npm run stop",
+    "stop:api": "cd ./api; npm run stop"
   },
   "dependencies": {
     "@portal-frontend/api": "^0.0.1",
