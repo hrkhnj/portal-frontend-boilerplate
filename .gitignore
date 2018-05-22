@@ -8,3 +8,4 @@ src/logs
 #docker
 docker/mysql/test
 docker/nginx/logs
+docker/dummy

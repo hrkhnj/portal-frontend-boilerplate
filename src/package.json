@@ -10,9 +10,9 @@
     "build:server": "cd ./server; npm run build",
     "build:api": "cd ./api; npm run build",
     "build": "../node_modules/.bin/npm-run-all -p build:*",
-    "start:server": "cd ./server; npm run start",
-    "start:api": "cd ./api; npm run start",
-    "start": "../node_modules/.bin/npm-run-all -p start:*",
+    "start:server:local": "cd ./server; npm run start -- --no-daemon",
+    "start:api:local": "cd ./api; npm run start -- --no-daemon",
+    "start:local": "../node_modules/.bin/npm-run-all -p start:*:local",
     "stop:server": "cd ./server; npm run stop",
     "stop:api": "cd ./api; npm run stop"
   },

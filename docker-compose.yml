@@ -4,15 +4,19 @@
 version: '2'
 services:
 
-  node_server:
+  node:
     build: ./docker/node
     container_name: portal_server_container
     hostname: portal_node_server
     volumes:
       - "./:/var/www/sample"
+      - "./node_modules:/var/www/sample/node_modules"
       - "./docker/dummy:/var/www/sample/docker/mysql"
     working_dir: /var/www/sample
-    command: [sh, -c, 'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server']
+    command: [sh, -c,
+      'yarn install',
+      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+    ]
     links:
       - mysql
       - memcached
@@ -25,9 +29,17 @@ services:
     hostname: portal_node_api
     volumes:
       - ".:/var/www/sample"
+      - "./node_modules:/var/www/sample/node_modules"
       - "./docker/dummy:/var/www/sample/docker/mysql"
+      - "./docker/dummy/node_api:/var/www/sample/node_modules"
     working_dir: /var/www/sample
-    command: [sh, -c, 'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api']
+    command: [
+      sh, 
+      -c, 
+      
+    ]
+    depends_on:
+      - node_server
     links:
       - mysql
       - memcached

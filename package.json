@@ -8,8 +8,7 @@
   "engines": {
     "node": ">=8"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/mediba-system/portal-frontend-boilerplate"
@@ -34,5 +33,5 @@
     "yarn": "^1.6.0",
     "npm-run-all": "^3.1.1",
     "redux-devtools-extension": "^2.13.2"
- }
+  }
 }
