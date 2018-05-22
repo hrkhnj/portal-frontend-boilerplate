@@ -4,7 +4,7 @@
 version: '2'
 services:
 
-  node:
+  node_server:
     build: ./docker/node
     container_name: portal_server_container
     hostname: portal_node_server
@@ -14,8 +14,7 @@ services:
       - "./docker/dummy:/var/www/sample/docker/mysql"
     working_dir: /var/www/sample
     command: [sh, -c,
-      'yarn install',
-      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+      'yarn install; cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
     ]
     links:
       - mysql
@@ -36,7 +35,7 @@ services:
     command: [
       sh, 
       -c, 
-      
+      'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local'
     ]
     depends_on:
       - node_server
