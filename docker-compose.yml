@@ -10,11 +10,11 @@ services:
     hostname: portal_node_server
     volumes:
       - "./:/var/www/sample"
-      - "./node_modules:/var/www/sample/node_modules"
       - "./docker/dummy:/var/www/sample/docker/mysql"
     working_dir: /var/www/sample
     command: [sh, -c,
-      'yarn install; cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+      #'npm rebuild node-sass >&/dev/null',
     ]
     links:
       - mysql
@@ -28,13 +28,11 @@ services:
     hostname: portal_node_api
     volumes:
       - ".:/var/www/sample"
-      - "./node_modules:/var/www/sample/node_modules"
       - "./docker/dummy:/var/www/sample/docker/mysql"
-      - "./docker/dummy/node_api:/var/www/sample/node_modules"
     working_dir: /var/www/sample
     command: [
-      sh, 
-      -c, 
+      sh,
+      -c,
       'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local'
     ]
     depends_on:
@@ -92,7 +90,7 @@ services:
     links:
       - mysql
     ports:
-      - 8081:8081
+      - 8080:8080
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
 
