@@ -39,7 +39,6 @@ services:
       - 3000
     volumes:
       - ./:/var/www/portal-frontend
-      - ./docker/node/node-sass:/var/www/portal-frontend/node-sass
       # mysqlは同期しない
       - ./docker/dummy:/var/www/portal-frontend/docker/mysql
     working_dir: /var/www/portal-frontend
