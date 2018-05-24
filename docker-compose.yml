@@ -4,64 +4,81 @@
 version: '2'
 services:
 
+  #--------------------------------
+  # nginx-proxy
+  # ここを起点に各nodeコンテナにfoward
+  #--------------------------------
+  proxy:
+    image: jwilder/nginx-proxy
+    container_name: portal_nginx_proxy
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx-proxy/certs/:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker/nginx/logs:/var/log/nginx/logs
+    restart: always
+    links:
+      - node_server
+      - node_api
+      - phpmyadmin
+
+  #--------------------------------
+  # node server（web ssr）
+  #--------------------------------
   node_server:
     build: ./docker/node
     container_name: portal_server_container
     hostname: portal_node_server
+    environment:
+      VIRTUAL_HOST: local.universal.auone.jp
+      VIRTUAL_PORT: 3000
+    expose:
+      - 3000
     volumes:
-      - "./:/var/www/sample"
-      - "./docker/dummy:/var/www/sample/docker/mysql"
-    working_dir: /var/www/sample
+      - ./:/var/www/portal-frontend
+      - ./docker/node/node-sass:/var/www/portal-frontend/node-sass
+      # mysqlは同期しない
+      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
+    working_dir: /var/www/portal-frontend
     command: [sh, -c,
       'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
-      #'npm rebuild node-sass >&/dev/null',
     ]
     links:
       - mysql
       - memcached
-    ports:
-      - "3000:3000"
 
+  #--------------------------------
+  # node api（sapi/graphql）
+  #--------------------------------
   node_api:
     build: ./docker/node
     container_name: portal_api_container
     hostname: portal_node_api
+    environment:
+      VIRTUAL_HOST: local.api.universal.auone.jp
+      VIRTUAL_PORT: 3001
+    expose:
+      - 3001
     volumes:
-      - ".:/var/www/sample"
-      - "./docker/dummy:/var/www/sample/docker/mysql"
-    working_dir: /var/www/sample
+      - .:/var/www/portal-frontend
+      # mysqlは同期しない
+      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
+    working_dir: /var/www/portal-frontend
     command: [
       sh,
       -c,
       'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local'
     ]
-    depends_on:
-      - node_server
     links:
       - mysql
       - memcached
-    ports:
-      - "3001:3001"
 
-  nginx:
-    build: ./docker/nginx
-    container_name: portal_nginx_container
-    ports:
-      - "80:80"
-    depends_on:
-      - node_server
-      - node_api
-      - phpmyadmin
-    volumes:
-      - "./docker/nginx/conf.d:/etc/nginx/conf.d"
-      - "./docker/nginx/logs:/var/log/nginx/logs"
-    links:
-      - mysql
-      - node_server
-      - node_api
-      - phpmyadmin
-      - memcached
-
+  #--------------------------------
+  # mysql
+  #--------------------------------
   mysql:
     build: ./docker/mysql
     container_name: portal_mysql_container
@@ -78,6 +95,9 @@ services:
       - ./docker/mysql/test/log:/var/log/mysql
       - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
 
+  #--------------------------------
+  # phpmyadmin
+  #--------------------------------
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: portal_phpmyadmin_contaier
@@ -87,13 +107,21 @@ services:
       - PMA_HOST=mysql
       - PMA_USER=portal_user
       - PMA_PASSWORD=portal_password
+    depends_on:
+      - mysql
     links:
       - mysql
-    ports:
-      - 8080:8080
+    environment:
+      VIRTUAL_HOST: local.myadmin.universal.auone.jp
+      VIRTUAL_PORT: 18080
+    expose:
+      - 18080
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
 
+  #--------------------------------
+  # memcached
+  #--------------------------------
   memcached:
     container_name: portal_memcached_contaier
     image: memcached:1.4-alpine
