@@ -8,7 +8,12 @@
   "engines": {
     "node": ">=8"
   },
-  "scripts": {},
+  "scripts": {
+    "docker:build": "docker-compose build --no-cache",
+    "docker:up": "docker-compose up -d",
+    "docker:stop": "docker-compose stop",
+    "docker:rm": "docker-compose down --rmi all --remove-orphans; rm -rf ./docker/mysql/test/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mediba-system/portal-frontend-boilerplate"
@@ -25,6 +30,7 @@
     "inversify": "^4.9.0",
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.16",
+    "node-sass": "^4.9.0",
     "typescript": "^2.8.3"
   },
   "devDependencies": {

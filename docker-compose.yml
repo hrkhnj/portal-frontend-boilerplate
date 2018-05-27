@@ -29,7 +29,7 @@ services:
   # node server（web ssr）
   #--------------------------------
   node_server:
-    build: ./docker/node
+    build: ./docker/node_server
     container_name: portal_server_container
     hostname: portal_node_server
     environment:
@@ -53,7 +53,7 @@ services:
   # node api（sapi/graphql）
   #--------------------------------
   node_api:
-    build: ./docker/node
+    build: ./docker/node_api
     container_name: portal_api_container
     hostname: portal_node_api
     environment:
@@ -82,10 +82,10 @@ services:
     build: ./docker/mysql
     container_name: portal_mysql_container
     restart: always
-    ports:
-      - 3306:3306
+    expose:
+      - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: portal
       MYSQL_USER: portal_user
       MYSQL_PASSWORD: portal_password
@@ -112,9 +112,6 @@ services:
       - mysql
     environment:
       VIRTUAL_HOST: local.myadmin.universal.auone.jp
-      VIRTUAL_PORT: 18080
-    expose:
-      - 18080
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
 

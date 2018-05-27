@@ -4,8 +4,10 @@ node_modules
 src/.build
 src/.next
 src/logs
+logs
 
 #docker
 docker/mysql/test
 docker/nginx/logs
 docker/dummy
+docker/phpmyadmin
