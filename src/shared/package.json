@@ -57,5 +57,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "typeorm-model-generator": "^0.2.16"
   }
 }

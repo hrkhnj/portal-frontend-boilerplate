@@ -21,33 +21,33 @@ services:
       - ./docker/nginx/logs:/var/log/nginx/logs
     restart: always
     links:
-      - node_server
+#      - node_server
       - node_api
       - phpmyadmin
 
   #--------------------------------
   # node server（web ssr）
   #--------------------------------
-  node_server:
-    build: ./docker/node_server
-    container_name: portal_server_container
-    hostname: portal_node_server
-    environment:
-      VIRTUAL_HOST: local.universal.auone.jp
-      VIRTUAL_PORT: 3000
-    expose:
-      - 3000
-    volumes:
-      - ./:/var/www/portal-frontend
-      # mysqlは同期しない
-      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
-    working_dir: /var/www/portal-frontend
-    command: [sh, -c,
-      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
-    ]
-    links:
-      - mysql
-      - memcached
+#  node_server:
+#    build: ./docker/node_server
+#    container_name: portal_server_container
+#    hostname: portal_node_server
+#    environment:
+#      VIRTUAL_HOST: local.universal.auone.jp
+#      VIRTUAL_PORT: 3000
+#    expose:
+#      - 3000
+#    volumes:
+#      - ./:/var/www/portal-frontend
+#      # mysqlは同期しない
+#      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
+#    working_dir: /var/www/portal-frontend
+#    command: [sh, -c,
+#      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+#    ]
+#    links:
+#      - mysql
+#      - memcached
 
   #--------------------------------
   # node api（sapi/graphql）
@@ -83,7 +83,9 @@ services:
     container_name: portal_mysql_container
     restart: always
     expose:
-      - 3306
+      - 13306
+    ports:
+      - 13306:3306
     environment:
       MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: portal
@@ -100,12 +102,16 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: portal_phpmyadmin_contaier
-    hostname: portal_phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=portal_user
-      - PMA_PASSWORD=portal_password
+      PMA_ARBITRARY: 1
+      PMA_PORT: 13306
+      PMA_HOST: mysql
+      PMA_USER: portal_user
+      PMA_PASSWORD: portal_password
+      MYSQL_ROOT_PASSWORD: mysql123
+      MYSQL_DATABASE: portal
+      MYSQL_USER: portal_user
+      MYSQL_PASSWORD: portal_password
     depends_on:
       - mysql
     links:
