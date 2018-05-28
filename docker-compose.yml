@@ -83,9 +83,9 @@ services:
     container_name: portal_mysql_container
     restart: always
     expose:
-      - 13306
+      - 3306
     ports:
-      - 13306:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: mysql123
       MYSQL_DATABASE: portal
@@ -104,14 +104,10 @@ services:
     container_name: portal_phpmyadmin_contaier
     environment:
       PMA_ARBITRARY: 1
-      PMA_PORT: 13306
+      PMA_PORT: 3306
       PMA_HOST: mysql
-      PMA_USER: portal_user
-      PMA_PASSWORD: portal_password
-      MYSQL_ROOT_PASSWORD: mysql123
-      MYSQL_DATABASE: portal
-      MYSQL_USER: portal_user
-      MYSQL_PASSWORD: portal_password
+      PMA_USER: user
+      PMA_PASSWORD: abcd123
     depends_on:
       - mysql
     links:
@@ -120,6 +116,7 @@ services:
       VIRTUAL_HOST: local.myadmin.universal.auone.jp
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
+      - ./docker/mysql/test/data:/var/lib/mysql
 
   #--------------------------------
   # memcached

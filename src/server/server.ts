@@ -4,6 +4,7 @@
  * @copyright mediba inc.
  * @since 2018.XX.XX
  */
+import path from "path";
 import next from "next";
 import express from "express";
 import compression from "compression";
@@ -38,6 +39,11 @@ app.prepare().then(() => {
     server.use(lusca.xssProtection(true));
     server.use(lusca.nosniff());
     server.disable("x-powered-by");
+
+    // 静的資材（localのみ）
+    if (process.env.NODE_ENV === "local") {
+        server.use("/static", express.static(path.resolve(__dirname, "../static")));
+    }
 
     // routing
     server.get("*", (req, res) => {

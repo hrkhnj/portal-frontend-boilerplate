@@ -13,6 +13,7 @@
     "docker:build": "docker-compose build --no-cache",
     "docker:up": "docker-compose up -d",
     "docker:stop": "docker-compose stop",
+    "docker:reload": "npm run docker:stop; npm run docker:up",
     "docker:rm": "docker-compose down --rmi all --remove-orphans; rm -rf ./docker/mysql/test/; rm -rf ./docker/phpmyadmin/"
   },
   "repository": {
