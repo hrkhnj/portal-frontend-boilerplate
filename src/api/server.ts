@@ -1,40 +1,40 @@
 /**
- * node express server
+ * graphql server
  *
  * @copyright mediba inc.
  * @since 2018.XX.XX
  */
-import express from "express";
-import compression from "compression";
-import bodyParser from "body-parser";
-import lusca from "lusca";
-import errorHandler from "errorhandler";
+import "reflect-metadata";
+import { GraphQLServer, Options } from "graphql-yoga";
+import { buildSchema } from "type-graphql";
+import { ArticleResolver } from "./resolver/ArticleResolver";
 
-const app = express();
+/**
+ * server
+ */
+async function bootstrap() {
 
-// Error Handler（ちゃんと自力で作る予定　今は暫定）
-app.use(errorHandler());
+    // build TypeGraphQL executable schema
+    const schema = await buildSchema({
+        resolvers: [ArticleResolver],
+    });
 
-// port
-app.set("port", parseInt(process.env.PORT as string, 10) || 3001);
+    // Create GraphQL server
+    const server = new GraphQLServer({ schema });
 
-// 圧縮転送
-app.use(compression());
+    // Configure server options
+    const serverOptions: Options = {
+        port: 4000,
+        endpoint: "/graphql",
+        playground: "/playground",
+    };
 
-// POSTは使わないかもしれないけどいちお
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+    // Start the server
+    server.start(serverOptions, ({ port, playground }) => {
+        console.log(
+            `Server is running, GraphQL Playground available at http://localhost:${port}${playground}`,
+        );
+    });
+}
 
-// セキュリティ設定
-app.use(lusca.xframe("SAMEORIGIN"));
-app.use(lusca.xssProtection(true));
-app.use(lusca.nosniff());
-app.disable("x-powered-by");
-
-// ルーティング（別ファイルにする予定）
-app.get("*", (req: express.Request, res: express.Response) => {
-  res.status(200).send("Hello Api");
-});
-
-// Start Express server.
-app.listen(app.get("port"));
+  bootstrap();
