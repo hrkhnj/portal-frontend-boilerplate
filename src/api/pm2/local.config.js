@@ -12,7 +12,6 @@ module.exports = {
         watch: true,
         name: "portal_frontend_api",
         script: scriptFile,
-        watch: scriptFile, // localのみ
         cwd: path.resolve("."),
         exec_mode: "cluster",
         instances: 1,

@@ -10,6 +10,8 @@
     "build:server": "cd ./server; npm run build",
     "build:api": "cd ./api; npm run build",
     "build": "../node_modules/.bin/npm-run-all -p build:*",
+    "watch:server": "cd ./server; npm run watch",
+    "watch:api": "cd ./api; npm run watch",
     "start:server:local": "cd ./server; npm run start -- --no-daemon",
     "start:api:local": "cd ./api; npm run start -- --no-daemon",
     "start:server": "cd ./server; npm run start",
