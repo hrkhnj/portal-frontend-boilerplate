@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "rm -rf ../.build/api/",
     "build": "../../node_modules/.bin/tsc -p .",
-    "watch": "../../node_modules/.bin/tsc -p . -w",
+    "watch": "node watcher.js &",
     "start": "cd ../; ../node_modules/.bin/pm2 start api/pm2/${NODE_ENV}.config.js",
     "reload": "cd ../; ../node_modules/.bin/pm2 reload api/pm2/${NODE_ENV}.config.js",
     "stop": "cd ../; ../node_modules/.bin/pm2 stop api/pm2/${NODE_ENV}.config.js"

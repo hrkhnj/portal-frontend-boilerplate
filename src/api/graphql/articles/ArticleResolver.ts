@@ -66,4 +66,14 @@ export class ArticleResolver {
             skip: offset || 0,
         });
     }
+
+    // TODO: 一軍
+    public async getFirst(/*by tab*/) {
+
+    }
+
+    // TODO: 二軍
+    public async getSecond(/*by tab*/) {
+        
+    }
 }

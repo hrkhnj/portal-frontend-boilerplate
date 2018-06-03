@@ -69,7 +69,7 @@ services:
     command: [
       sh,
       -c,
-      'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local'
+      'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local; cd api; npm run watch'
     ]
     links:
       - mysql
