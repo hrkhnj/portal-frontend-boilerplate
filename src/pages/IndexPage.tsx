@@ -11,35 +11,30 @@ import "./bootstrap";
 import { Link } from "../shared/routes/index";
 
 import fetch from "isomorphic-unfetch";
-import { execute } from "apollo-link";
-import { HttpLink } from "apollo-link-http";
-import gql from "graphql-tag";
+import { GraphQLClient } from "graphql-request";
 
-const uri = "https://local.api.universal.auone.jp/";
-const link = new HttpLink({ uri: uri, fetch });
+const client = new GraphQLClient("https://local.api.universal.auone.jp/graphql", {
+    mode: "cors"
+});
 
-const operation = {
-  query: gql`
-  query article {
-    getArticles(offset: 1, limit: 20) {
+const query = `{
+    getArticles(limit: 10) {
         id,
         code,
-        title
-    },
+        cp_id,
+        cp_name,
+        genre_id,
+        title,
+        body
+    }
     getUtils {
         currentTimestamp
-    }  
-  }
-  `,
-};
+    }
+}`
 
-// どうやって
-execute(link, operation).subscribe({
-  next: data => console.log(`received data: ${JSON.stringify(data, null, 2)}`),
-  error: error => console.log(`received error ${error}`),
-  complete: () => console.log(`complete`),
-})
-
+client.request(query).then((data) => {
+    console.log(data);
+});
 
 
 export default () => (

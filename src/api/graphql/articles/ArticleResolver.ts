@@ -21,7 +21,7 @@ export class ArticleResolver {
 
     /**
      * constructor
-     * 
+     *
      * @param Repository<Article> articleRepository
      */
     constructor(
@@ -31,9 +31,9 @@ export class ArticleResolver {
 
     /**
      * 記事を取得する
-     * 
+     *
      * @param code 記事ID
-     * 
+     *
      * @returns Promise<Article | undefined>
      */
     @Query(returns => Article, { nullable: true })
@@ -52,15 +52,15 @@ export class ArticleResolver {
 
     /**
      * 記事一覧を取得する
-     * 
-     * @param number offset 
-     * @param number limit 
-     * 
+     *
+     * @param number offset
+     * @param number limit
+     *
      * @returns Promise<Article[]>
      */
-    @Query(returns => [Article], { nullable: false })    
+    @Query(returns => [Article], { nullable: false })
     public async getArticles(@Args() { offset, limit }: ArticleInput): Promise<Article[]> {
-
+throw new Error("123");
         return this.articleRepository.find({
             take: limit || 20,
             skip: offset || 0,
@@ -74,6 +74,6 @@ export class ArticleResolver {
 
     // TODO: 二軍
     public async getSecond(/*by tab*/) {
-        
+
     }
 }

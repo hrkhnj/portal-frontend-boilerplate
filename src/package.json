@@ -18,13 +18,5 @@
     "start:api": "cd ./api; npm run start",
     "stop:server": "cd ./server; npm run stop",
     "stop:api": "cd ./api; npm run stop"
-  },
-  "dependencies": {
-    "@portal-frontend/api": "^0.0.1",
-    "@portal-frontend/server": "^0.0.1",
-    "@portal-frontend/shared": "^0.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

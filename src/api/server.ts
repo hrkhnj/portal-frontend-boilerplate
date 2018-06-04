@@ -10,6 +10,7 @@ import { GraphQLServer, Options } from "graphql-yoga";
 import * as TypeGraphQL from "type-graphql";
 import * as TypeORM from "typeorm";
 import { Container } from "typedi";
+import cors from "cors"
 
 const port = parseInt(process.env.PORT as string, 10) || 3001;
 const isProduction: boolean = process.env.NODE_ENV === "production";
@@ -41,12 +42,10 @@ async function run() {
             logger: "advanced-console",
             logging: "all",
             maxQueryExecutionTime: 1000 * 5,
+            // 絶対にtrueにしちゃダメだから、絶対
             dropSchema: false,
-            cache: false,
             // cacheはquery-result-cacheテーブルが必要らしい・・・or redis
-            //cache: {
-            //    duration: 1000 * 60
-            //},
+            cache: false,
         });
 
         // build schema
@@ -61,12 +60,25 @@ async function run() {
         const server = new GraphQLServer({ schema });
 
         // Configure server options
+        // TODO: x-powerd-byを消したい（expressだとapp.disable("x-powerd-by")が出来るけど・・・）
         const serverOptions: Options = {
             port: port,
-            endpoint: "/",
+            endpoint: "/graphql",
 
             // 商用じゃさすがに
             playground: isProduction ? false : "/playground",
+
+            // cors
+            // TODO: 設定ファイル化
+            cors: {
+                origin: "*",
+                methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+                preflightContinue: false,
+                optionsSuccessStatus: 204,
+            },
+
+            // 商用以外ね
+            debug: !isProduction,
         };
 
         // Start the server

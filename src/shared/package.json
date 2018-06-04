@@ -28,6 +28,7 @@
     "class-transformer": "^0.1.9",
     "class-validator": "^0.8.5",
     "compression": "^1.7.2",
+    "cors": "^2.8.4",
     "errorhandler": "^1.5.0",
     "graphql": "^0.13.2",
     "graphql-request": "^1.6.0",
@@ -63,9 +64,6 @@
     "typescript-fsa-reducers": "^0.4.5",
     "typescript-fsa-redux-saga": "^1.0.3",
     "typescript-fsa-redux-thunk": "^1.0.1"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "devDependencies": {
     "typeorm-model-generator": "^0.2.16"
