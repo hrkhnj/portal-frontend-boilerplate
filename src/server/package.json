@@ -1,0 +1,17 @@
+{
+  "name": "@portal-frontend/server",
+  "version": "0.0.1",
+  "dependencies": {
+    "@portal-frontend/shared": "^0.0.1",
+    "@types/express": "^4.11.1",
+    "express": "^4.16.3"
+  },
+  "scripts": {
+    "clean": "rm -rf ../.build/server/",
+    "build": "../../node_modules/.bin/tsc -p .",
+    "watch": "../../node_modules/.bin/tsc -p . -w",
+    "start": "cd ../; ../node_modules/.bin/pm2 start server/pm2/${NODE_ENV}.config.js",
+    "reload": "cd ../; ../node_modules/.bin/pm2 reload server/pm2/${NODE_ENV}.config.js",
+    "stop": "cd ../; ../node_modules/.bin/pm2 stop server/pm2/${NODE_ENV}.config.js"
+  }
+}

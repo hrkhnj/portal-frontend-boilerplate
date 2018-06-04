@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../.build/",
+        "allowJs": false,
+        "target": "es2016",
+        "module": "commonjs",
+        "lib": ["es2016", "esnext.asynciterable"],
+        "esModuleInterop": true,
+        "noUnusedParameters": false,
+    },
+    "include": [
+        "./**/*.ts*",
+        "../shared/**/*.ts*",
+        "../config/**/*.ts*",
+    ],
+    "exclude": [
+        "**/*/node_modules",
+        "../.build",
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "portal-frontend",
+  "version": "0.0.1",
+  "scripts": {
+    "clean:next": "rm -rf .next",
+    "clean:server": "cd ./server; npm run clean",
+    "clean:api": "cd ./api; npm run clean",
+    "clean": "../node_modules/.bin/npm-run-all -p clean:*",
+    "build:next": "../node_modules/.bin/next build",
+    "build:server": "cd ./server; npm run build",
+    "build:api": "cd ./api; npm run build",
+    "build": "../node_modules/.bin/npm-run-all -p build:*",
+    "watch:server": "cd ./server; npm run watch",
+    "watch:api": "cd ./api; npm run watch",
+    "start:server:local": "cd ./server; npm run start -- --no-daemon",
+    "start:api:local": "cd ./api; npm run start -- --no-daemon",
+    "start:server": "cd ./server; npm run start",
+    "start:api": "cd ./api; npm run start",
+    "stop:server": "cd ./server; npm run stop",
+    "stop:api": "cd ./api; npm run stop"
+  }
+}

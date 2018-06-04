@@ -1,0 +1,13 @@
+node_modules
+
+#build成果物
+src/.build
+src/.next
+src/logs
+logs
+
+#docker
+docker/mysql/test
+docker/nginx/logs
+docker/dummy
+docker/phpmyadmin

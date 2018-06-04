@@ -1,0 +1,47 @@
+{
+  "name": "portal-frontend-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "docker:build": "docker-compose build --no-cache",
+    "docker:up": "docker-compose up -d",
+    "docker:stop": "docker-compose stop",
+    "docker:reload": "npm run docker:stop; npm run docker:up",
+    "docker:rm": "docker-compose down --rmi all --remove-orphans; rm -rf ./docker/mysql/test/; rm -rf ./docker/phpmyadmin/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mediba-system/portal-frontend-boilerplate"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "src/*",
+    "tests/*"
+  ],
+  "dependencies": {
+    "@types/node": "^10.0.2",
+    "concurrently": "^3.5.1",
+    "typedi": "^0.7.3",
+    "moment": "^2.22.1",
+    "moment-timezone": "^0.5.16",
+    "node-sass": "^4.9.0",
+    "typescript": "^2.8.3"
+  },
+  "devDependencies": {
+    "chokidar": "^2.0.3",
+    "chokidar-cli": "^1.2.0",
+    "cross-env": "^5.1.6",
+    "lerna": "^2.11.0",
+    "npm-run-all": "^3.1.1",
+    "redux-devtools-extension": "^2.13.2",
+    "tslint-react": "^3.4.0",
+    "yarn": "^1.6.0"
+  }
+}

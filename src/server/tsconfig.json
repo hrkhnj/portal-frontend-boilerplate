@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../.build/",
+        "allowJs": false,
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "noUnusedParameters": false,
+    },
+    "include": [
+        "./**/*.ts*",
+        "../shared/**/*.ts*",
+        "../config/**/*.ts*",
+    ],
+    "exclude": [
+        "**/*/node_modules",
+        "../.build",
+    ]
+}

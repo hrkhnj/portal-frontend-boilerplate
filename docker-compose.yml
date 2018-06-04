@@ -1,0 +1,126 @@
+#
+# ローカル開発環境（超シンプル構成）
+#
+version: '2'
+services:
+
+  #--------------------------------
+  # nginx-proxy
+  # ここを起点に各nodeコンテナにfoward
+  #--------------------------------
+  proxy:
+    image: jwilder/nginx-proxy
+    container_name: portal_nginx_proxy
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx-proxy/certs/:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker/nginx/logs:/var/log/nginx/logs
+    restart: always
+    links:
+      - node_server
+      - node_api
+      - phpmyadmin
+
+  #--------------------------------
+  # node server（web ssr）
+  #--------------------------------
+  node_server:
+    build: ./docker/node_server
+    container_name: portal_server_container
+    hostname: portal_node_server
+    environment:
+      VIRTUAL_HOST: local.universal.auone.jp
+      VIRTUAL_PORT: 3000
+    expose:
+      - 3000
+    volumes:
+      - ./:/var/www/portal-frontend
+      # mysqlは同期しない
+      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
+    working_dir: /var/www/portal-frontend
+    command: [sh, -c,
+      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+    ]
+    links:
+      - mysql
+      - memcached
+
+  #--------------------------------
+  # node api（sapi/graphql）
+  #--------------------------------
+  node_api:
+    build: ./docker/node_api
+    container_name: portal_api_container
+    hostname: portal_node_api
+    environment:
+      VIRTUAL_HOST: local.api.universal.auone.jp
+      VIRTUAL_PORT: 3001
+    expose:
+      - 3001
+    volumes:
+      - .:/var/www/portal-frontend
+      # mysqlは同期しない
+      - ./docker/dummy:/var/www/portal-frontend/docker/mysql
+    working_dir: /var/www/portal-frontend
+    command: [
+      sh,
+      -c,
+      'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local; cd api; npm run watch'
+    ]
+    links:
+      - mysql
+      - memcached
+
+  #--------------------------------
+  # mysql
+  #--------------------------------
+  mysql:
+    build: ./docker/mysql
+    container_name: portal_mysql_container
+    restart: always
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql123
+      MYSQL_DATABASE: portal
+      MYSQL_USER: portal_user
+      MYSQL_PASSWORD: portal_password
+    volumes:
+      - ./docker/mysql/test/data:/var/lib/mysql
+      - ./docker/mysql/test/log:/var/log/mysql
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+
+  #--------------------------------
+  # phpmyadmin
+  #--------------------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: portal_phpmyadmin_contaier
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+      PMA_HOST: mysql
+      PMA_USER: user
+      PMA_PASSWORD: abcd123
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    environment:
+      VIRTUAL_HOST: local.myadmin.universal.auone.jp
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
+      - ./docker/mysql/test/data:/var/lib/mysql
+
+  #--------------------------------
+  # memcached
+  #--------------------------------
+  memcached:
+    container_name: portal_memcached_contaier
+    image: memcached:1.4-alpine

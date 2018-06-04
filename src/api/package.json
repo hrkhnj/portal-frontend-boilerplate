@@ -1,0 +1,16 @@
+{
+  "name": "@portal-frontend/api",
+  "version": "0.0.1",
+  "dependencies": {
+    "@portal-frontend/shared": "^0.0.1",
+    "graphql-yoga": "^1.14.6"
+  },
+  "scripts": {
+    "clean": "rm -rf ../.build/api/",
+    "build": "../../node_modules/.bin/tsc -p .",
+    "watch": "node watcher.js &",
+    "start": "cd ../; ../node_modules/.bin/pm2 start api/pm2/${NODE_ENV}.config.js",
+    "reload": "cd ../; ../node_modules/.bin/pm2 reload api/pm2/${NODE_ENV}.config.js",
+    "stop": "cd ../; ../node_modules/.bin/pm2 stop api/pm2/${NODE_ENV}.config.js"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@portal-frontend/tests",
+  "version": "0.0.1",
+  "dependencies": {
+    "@portal-frontend/shared": "^0.0.1"
+  },
+  "devDependencies": {
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts-ts": "1.0.6"
+  }
+}
