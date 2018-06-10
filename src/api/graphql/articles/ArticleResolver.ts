@@ -60,7 +60,7 @@ export class ArticleResolver {
      */
     @Query(returns => [Article], { nullable: false })
     public async getArticles(@Args() { offset, limit }: ArticleInput): Promise<Article[]> {
-throw new Error("123");
+
         return this.articleRepository.find({
             take: limit || 20,
             skip: offset || 0,

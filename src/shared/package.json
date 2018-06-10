@@ -66,6 +66,7 @@
     "typescript-fsa-redux-thunk": "^1.0.1"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.5.1",
     "typeorm-model-generator": "^0.2.16"
   }
 }
