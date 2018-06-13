@@ -106,14 +106,13 @@ services:
       PMA_ARBITRARY: 1
       PMA_PORT: 3306
       PMA_HOST: mysql
-      PMA_USER: user
-      PMA_PASSWORD: abcd123
+      PMA_USER: portal_user
+      PMA_PASSWORD: portal_password
+      VIRTUAL_HOST: local.myadmin.universal.auone.jp
     depends_on:
       - mysql
     links:
       - mysql
-    environment:
-      VIRTUAL_HOST: local.myadmin.universal.auone.jp
     volumes:
       - ./docker/phpmyadmin/sessions:/sessions
       - ./docker/mysql/test/data:/var/lib/mysql
