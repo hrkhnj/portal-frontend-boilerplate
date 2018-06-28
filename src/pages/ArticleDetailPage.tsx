@@ -1,19 +1,19 @@
 /**
- * Index Page
+ * Article Detail Page
  *
  * @package Page
  * @since 2018.XX.XX
  * @copyright mediba.inc
  */
 import "./_bootstrap";
-import { IndexContainer } from "../shared/components/containers/IndexContainer";
+import { ArticleDetailContainer } from "../shared/components/containers/ArticleDetailContainer";
 
 /**
  * 本体
  *
  * @author hoge(hoge@mediba.jp)
  */
-export default class extends IndexContainer {
+export default class extends ArticleDetailContainer {
 
     /**
      * getInitialProps
