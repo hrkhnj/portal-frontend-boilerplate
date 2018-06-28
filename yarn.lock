@@ -717,12 +717,28 @@
   dependencies:
     "@types/node" "*"
 
-"@types/next@^2.4.10":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@types/next/-/next-2.4.10.tgz#9c74a66ae09462b0b6c2c66a2fab552fa61ed6c3"
+"@types/next-redux-wrapper@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/next-redux-wrapper/-/next-redux-wrapper-1.4.2.tgz#ef9d2576a1de73d854c4e8eb04e760e2f7821368"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
+    "@types/react-redux" "*"
+    redux "^3.6.0"
+
+"@types/next@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@types/next/-/next-6.0.3.tgz#d41a055ff67c8ea8873bc3627e8ff302c3b39ba0"
+  dependencies:
+    "@types/node" "*"
+    "@types/node-fetch" "*"
+    "@types/react" "*"
+
+"@types/node-fetch@*":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.1.1.tgz#1e8d0abf4c438828ce9c74b45d564a8a93e48cec"
+  dependencies:
+    "@types/node" "*"
 
 "@types/node-sass@^3.10.32":
   version "3.10.32"
@@ -760,6 +776,13 @@
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.6.tgz#49607cbb72e1bb7dcefa9174cb591434d3b6f0af"
   dependencies:
     "@types/react" "*"
+
+"@types/react-redux@*":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.3.tgz#7e8a86cce1c453166056bce9d4eb5cab5a2cfe13"
+  dependencies:
+    "@types/react" "*"
+    redux "^4.0.0"
 
 "@types/react-redux@^5.0.19":
   version "5.0.20"
@@ -5032,6 +5055,12 @@ negotiator@0.6.1:
 neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
+
+next-redux-wrapper@^2.0.0-beta.6:
+  version "2.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/next-redux-wrapper/-/next-redux-wrapper-2.0.0-beta.6.tgz#55128bc37fbdf1c8531a992ba14832797c34b15d"
+  dependencies:
+    "@babel/runtime" "^7.0.0-beta.42"
 
 next-tick@1:
   version "1.0.0"
