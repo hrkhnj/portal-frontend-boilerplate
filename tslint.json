@@ -29,7 +29,8 @@
         "allow-declarations",
         "allow-named-functions"
     ],
-
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false,
     "completed-docs": true,
     "no-any": false,
     "no-magic-numbers": false,
@@ -48,7 +49,7 @@
     "no-default-export": false,
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "ban": [ 
+    "ban": [
       true,
       ["describe", "only"],
       ["it", "only"]

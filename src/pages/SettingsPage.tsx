@@ -5,8 +5,8 @@
  * @since 2018.XX.XX
  * @copyright mediba.inc
  */
-//@ts-ignore
-import {Link} from "../shared/routes/index";
+// @ts-ignore
+import { Link } from "../shared/routes/index";
 
 export default () => (
     <div>
@@ -16,5 +16,3 @@ export default () => (
         </ul>
     </div>
 );
-
-

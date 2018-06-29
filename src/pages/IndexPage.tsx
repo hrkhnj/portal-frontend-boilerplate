@@ -5,7 +5,7 @@
  * @since 2018.XX.XX
  * @copyright mediba.inc
  */
-import "./_bootstrap";
+// import "./_bootstrap";
 import { IndexContainer } from "../shared/components/containers/IndexContainer";
 
 /**
@@ -17,8 +17,8 @@ export default class extends IndexContainer {
 
     /**
      * getInitialProps
-     * 
-     * @returns {}
+     *
+     * @returns [] props
      */
     public static async getInitialProps({ ctx }): Promise<any> {
         return {};

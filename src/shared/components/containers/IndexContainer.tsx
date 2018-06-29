@@ -6,7 +6,8 @@
  * @copyright mediba.inc
  */
 import * as React from "react";
-import { IndexSpTemplate } from "../templates/sp/IndexSpTemplate";
+import { ContainerProps, ContainerState } from "../props/ContainerProps";
+// import { IndexSpTemplate } from "../templates/sp/IndexSpTemplate";
 
 /**
  * IndexContainer
@@ -14,7 +15,7 @@ import { IndexSpTemplate } from "../templates/sp/IndexSpTemplate";
  *
  * @author hoge(hoge@mediba.jp)
  */
-export class IndexContainer extends React.Component<RootProps, AppState> {
+export class IndexContainer extends React.Component<ContainerProps, ContainerState> {
 
     /**
      * constructor
@@ -24,7 +25,7 @@ export class IndexContainer extends React.Component<RootProps, AppState> {
      * @param props props
      * @param ctx コンテキスト
      */
-    constructor(props: RootProps, ctx?: any) {
+    constructor(props: ContainerProps, ctx?: any) {
         super(props, ctx);
     }
 
@@ -55,6 +56,7 @@ export class IndexContainer extends React.Component<RootProps, AppState> {
         // TODO: UserAgentからdevicetypeみてroot templateを振り分ける
         return (
             <div>
+                <li>hogehoge</li>
             </div>
         );
     }
@@ -81,7 +83,7 @@ export class IndexContainer extends React.Component<RootProps, AppState> {
      *
      * @returns void
      */
-    // public componentWillReceiveProps(nextProps: Readonly<RootProps>): void {
+    // public componentWillReceiveProps(nextProps: Readonly<ContainerProps>): void {
     //     //
     // }
 
@@ -98,7 +100,7 @@ export class IndexContainer extends React.Component<RootProps, AppState> {
      * @return boolean
      */
     public shouldComponentUpdate(
-        nextProps: Readonly<RootProps>, nextState: Readonly<AppState>, nextContext: any): boolean {
+        nextProps: Readonly<ContainerProps>, nextState: Readonly<ContainerState>, nextContext: any): boolean {
 
         return false;
     }
@@ -146,7 +148,7 @@ export class IndexContainer extends React.Component<RootProps, AppState> {
 
     /**
      * React Lifecycle
-     * 
+     *
      * ComponentのError Boundary
      * @see https://qiita.com/zaki-yama/items/05307ce251df80849b38
      */
