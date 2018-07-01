@@ -20,10 +20,12 @@ module.exports = {
         out_file: "../logs/server_ap.log",
         error_file: "../logs/server_error.log",
         env: {
+            APPLICATION_ENV: "local",
             NODE_ENV: "local",
             PORT: 3000,
         },
         env_production:{
+            APPLICATION_ENV: "local",
             NODE_ENV: "production"
         },
     }]

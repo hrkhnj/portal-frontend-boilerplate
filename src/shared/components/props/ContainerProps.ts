@@ -13,6 +13,7 @@ import { RootState } from "../../stores/RootState";
 /**
  * Containerのprops
  * Redux.connectで全stateを渡す事を想定してRootState型を継承
+ * （↑ this.props.[RootStateメンバ] でstateを参照できるように）
  * 
  * @see pages/_app.tsx
  */
@@ -31,5 +32,6 @@ export interface ContainerProps extends RootState {
 /**
  * ContainerState
  * ただのaliasだ・・・
+ * TODO:使わない気がする・・・
  */
 export type ContainerState = RootState;

@@ -10,8 +10,8 @@
     "clean": "rm -rf ../.build/server/",
     "build": "../../node_modules/.bin/tsc -p .",
     "watch": "../../node_modules/.bin/tsc -p . -w",
-    "start": "cd ../; ../node_modules/.bin/pm2 start server/pm2/${NODE_ENV}.config.js",
-    "reload": "cd ../; ../node_modules/.bin/pm2 reload server/pm2/${NODE_ENV}.config.js",
-    "stop": "cd ../; ../node_modules/.bin/pm2 stop server/pm2/${NODE_ENV}.config.js"
+    "start": "cd ../; ../node_modules/.bin/pm2 start server/pm2/${APPLICATION_ENV}.config.js",
+    "reload": "cd ../; ../node_modules/.bin/pm2 reload server/pm2/${APPLICATION_ENV}.config.js",
+    "stop": "cd ../; ../node_modules/.bin/pm2 stop server/pm2/${APPLICATION_ENV}.config.js"
   }
 }

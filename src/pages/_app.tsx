@@ -67,15 +67,6 @@ export default withRedux(initializeStore)(class PortalApp extends App<AppProps> 
     }
 
     /**
-     * constructor
-     *
-     * @param AppProps props
-     */
-    public constructor(props: AppProps) {
-        super(props);
-    }
-
-    /**
      * render
      * 子Containerにcontextを渡してあげる役
      *

@@ -12,7 +12,7 @@ import { ArticleStateType } from "./ArticleState";
 
 /**
  * ArticleAction
- * ArticleState型と一緒だけど・・・AnyActionを継承するって意味でね
+ * ArticleState型と一緒だけど・・・AnyActionを継承するって意味がね
  */
 export interface ArticleAction extends AnyAction {
     type: ArticleStateType;

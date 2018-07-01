@@ -43,7 +43,7 @@ services:
       - ./docker/dummy:/var/www/portal-frontend/docker/mysql
     working_dir: /var/www/portal-frontend
     command: [sh, -c,
-      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; NODE_ENV=local npm run start:server:local'
+      'cd src; npm run clean:server; npm run clean:next; npm run build:server; npm run build:next; APPLICATION_ENV=local npm run start:server:local'
     ]
     links:
       - mysql
@@ -69,7 +69,7 @@ services:
     command: [
       sh,
       -c,
-      'cd src; npm run clean:api; npm run build:api; NODE_ENV=local npm run start:api:local; cd api; npm run watch'
+      'cd src; npm run clean:api; npm run build:api; APPLICATION_ENV=local npm run start:api:local; cd api; npm run watch'
     ]
     links:
       - mysql

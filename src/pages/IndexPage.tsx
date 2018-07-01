@@ -7,10 +7,10 @@
  */
 // import "./_bootstrap";
 import { connect } from "react-redux";
-import { Store } from "redux";
+import { Store, AnyAction } from "redux";
 import { RootState } from "../shared/stores/RootState";
 import { IndexContainer } from "../shared/components/containers/IndexContainer";
-import { loadedAction } from "../shared/stores/articles/ArticleAction";
+import { ArticleAction, loadedAction } from "../shared/stores/articles/ArticleAction";
 
 /**
  * 本体
@@ -38,7 +38,7 @@ export default connect(state => state)(class extends IndexContainer {
         if (isServer) {
             // TODO: エラーが出るけど普通にトランスパイルできるし動く
             // 原因がわからない・・・とにかくignoreするのは嫌だ
-            // @ts-ignore
+
             store.dispatch(loadedAction(["hoge", "fuga"]));
         }
 
