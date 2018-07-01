@@ -7,9 +7,9 @@
  * @since 2018.XX.XX
  * @copyright mediba.inc
  */
+import thunk from "redux-thunk";
 import { createStore, applyMiddleware, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
 import { rootReducer } from "./RootReducer";
 import { RootState } from "./RootState";
 
@@ -18,7 +18,7 @@ import { RootState } from "./RootState";
  *
  * @export
  */
-export function initialStore(initialState?: RootState): Store<RootState> {
+export function initializeStore(initialState?: RootState): Store<RootState> {
     return createStore<RootState>(
         rootReducer,
         initialState!,

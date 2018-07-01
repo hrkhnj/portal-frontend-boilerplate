@@ -8,6 +8,7 @@
  */
 import { combineReducers } from "redux";
 import { RootState } from "./RootState";
+// import { traversalReducer as traversal } from "./common/TraversalReducer";
 import { articleReducer as article } from "./articles/ArticleReducer";
 // import { headerReducer as header } from "./header/HeaderReducer";
 // import { infomationReducer as infomation } from "./infomation/InfomationReducer";
@@ -20,6 +21,7 @@ import { articleReducer as article } from "./articles/ArticleReducer";
  * 分割単位：Widgets単位が望ましい
  */
 export const rootReducer = combineReducers<RootState>({
+    // traversal,
     article,
     // header,
     // infomation,

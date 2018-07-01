@@ -6,6 +6,7 @@
  * @since 2018.XX.XX
  * @copyright mediba.inc
  */
+// import { TraversalState } from "./common/TraversalState";
 import { ArticleState } from "./articles/ArticleState";
 // import { HeaderState } from "./header/HeaderState";
 // import { InfomationState } from "./infomation/InfomationState";
@@ -17,6 +18,7 @@ import { ArticleState } from "./articles/ArticleState";
  * 単位：Widgets単位が望ましい
  */
 export interface RootState {
+//    traversal: TraversalState;
     article: ArticleState;
 //    header: HeaderState;
 //    infomation: InfomationState;

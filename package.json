@@ -28,10 +28,10 @@
   "dependencies": {
     "@types/node": "^10.0.2",
     "concurrently": "^3.5.1",
-    "typedi": "^0.7.3",
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.16",
     "node-sass": "^4.9.0",
+    "typedi": "^0.7.3",
     "typescript": "^2.8.3"
   },
   "devDependencies": {

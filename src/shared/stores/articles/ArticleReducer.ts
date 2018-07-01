@@ -12,27 +12,37 @@ import { InitialArticleState, ArticleState, ArticleStateType } from "./ArticleSt
 
 /**
  * articleReducer
- * action typeを見てstateを返してあげる
+ * action typeを見てstateを返してあげる役
+ * 
+ * @author hoge(hoge@mediba.jp)
  */
 export const articleReducer: Reducer<ArticleState> = (
     state: ArticleState = InitialArticleState, action: AnyAction): ArticleState => {
 
     /**
      * よく見るswitch
-     * （おしゃれなnpmでかっこよく書くにはまだ早い尾野）
+     * （おしゃれなmoduleでかっこよく書くにはまだ早いぜおの）
      */
     switch (action.type) {
-
         // 初期化
         case ArticleStateType.INIT:
-            const initAction: ArticleState = {
-                articles: [],
+            return {
+                ...state,
+                type: ArticleStateType.INIT,
             };
 
-            return initAction;
+        // 初期読み込み完了
+        case ArticleStateType.LOADED:
+            return {
+                ...state,
+                articles: action.articles,
+                type: ArticleStateType.LOADED,
+            };
 
         // 受けたstateをママ返す系
         default:
-            return state;
+            return {
+                ...state,
+            };
     }
 };

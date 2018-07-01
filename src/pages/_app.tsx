@@ -10,17 +10,17 @@
 import * as React from "react";
 import { Provider } from "react-redux";
 import { Store } from "redux";
-import * as withRedux from "next-redux-wrapper";
+import withRedux from "next-redux-wrapper";
 import { NextContext } from "next";
 import App, { Container, AppComponentProps } from "next/app";
 import { RootState } from "../shared/stores/RootState";
-import { initialStore } from "../shared/stores/InitialStore";
+import { initializeStore } from "../shared/stores/InitializeStore";
 
 /**
  * InjectedStoreProps
  */
 export interface InjectedStoreProps {
-    reduxStore: Store<RootState>;
+    store: Store<RootState>;
 }
 
 /**
@@ -30,10 +30,13 @@ export type AppProps = AppComponentProps & InjectedStoreProps;
 
 /**
  * PortalApp
+ * next-redux-wrapperによってnextjs<->reduxをつないでいる
+ * initializeStoreに渡す初期stateは、SSRによって状態更新した内容が渡る
+ * （window.__NEXT_DATA__.props.initialStateとしてclientに渡している）
  *
  * @author hoge(hoge@mediba.jp)
  */
-export default withRedux(initialStore)(class PortalApp extends App<AppProps> {
+export default withRedux(initializeStore)(class PortalApp extends App<AppProps> {
 
     /**
      * (private)@property NextContext nextContext
@@ -80,14 +83,14 @@ export default withRedux(initialStore)(class PortalApp extends App<AppProps> {
      */
     public render(): React.ReactNode {
 
-        const { Component, pageProps, reduxStore } = this.props;
+        const { Component, pageProps, store } = this.props;
 
         return (
             <Container>
-                <Provider store={reduxStore}>
+                <Provider store={store}>
                     <Component {...pageProps} context={PortalApp.nextContext} />
                 </Provider>
             </Container>
         );
     }
-});
+})

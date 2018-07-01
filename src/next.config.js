@@ -15,9 +15,5 @@ module.exports = withTypescript({
     // entity達が勝手にlower参照されちゃう（ListEntity -> listEntity）ので
     config.plugins.push(new caseSensitive());
     return config
-  },
-
-  typescriptLoaderOptions: {
-    transpileOnly: false
   }
 })

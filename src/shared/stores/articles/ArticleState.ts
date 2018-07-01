@@ -26,7 +26,20 @@ export enum ArticleStateType {
  * ArticleState
  */
 export interface ArticleState {
+    /**
+     * @var ArticleStateType 状態名
+     */
+    type: ArticleStateType;
+
+    /**
+     * @var any[] articles サンプル的に入れてる TODO:graphQLのSchema型にする
+     */
     articles: any[];
+
+    /**
+     * @var any hoge ← サンプル的に入れてる
+     */
+    hoge?: any;
 }
 
 /**
@@ -34,5 +47,6 @@ export interface ArticleState {
  * 初期state
  */
 export const InitialArticleState: ArticleState = {
+    type: ArticleStateType.INIT,
     articles: [],
 };

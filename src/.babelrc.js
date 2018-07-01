@@ -1,6 +1,7 @@
-{
+module.exports = {
   "presets": [
-    "next/babel"
+    "next/babel",
+    "@zeit/next-typescript/babel",
   ],
   "plugins": [
     [
@@ -10,6 +11,6 @@
         "displayName": true,
         "preprocess": false
       }
-    ]
+    ],
   ]
 }

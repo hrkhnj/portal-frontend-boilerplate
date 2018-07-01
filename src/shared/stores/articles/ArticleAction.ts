@@ -11,7 +11,8 @@ import { AnyAction, Dispatch } from "redux";
 import { ArticleStateType } from "./ArticleState";
 
 /**
- * ArticleActionArgs
+ * ArticleAction
+ * ArticleState型と一緒だけど・・・AnyActionを継承するって意味でね
  */
 export interface ArticleAction extends AnyAction {
     type: ArticleStateType;
@@ -19,15 +20,15 @@ export interface ArticleAction extends AnyAction {
     hoge?: any;
 }
 
-/**
- * Actions
- */
+//////////////////////////////////////////////////////
+//             A  C  T  I  O  N  S                  //
+//////////////////////////////////////////////////////
 
 /**
  * 初期処理するやつ
  * @returns ArticleAction
  */
-export const initializeAction = () => (dispatch: Dispatch<ArticleAction>) => {
+export const initializeAction = () => (dispatch: Dispatch<ArticleAction>): ArticleAction => {
 
     // ArticleAction型を返す
     return dispatch({
@@ -40,7 +41,7 @@ export const initializeAction = () => (dispatch: Dispatch<ArticleAction>) => {
  * loadし終わったやつ
  * @returns ArticleAction
  */
-export const loadedAction = (payload: any[]) => (dispatch: Dispatch<ArticleAction>) => {
+export const loadedAction = (payload: any[]) => (dispatch: Dispatch<ArticleAction>): ArticleAction => {
 
     // ArticleAction型を返す
     return dispatch({

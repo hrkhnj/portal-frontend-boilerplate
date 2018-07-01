@@ -27,6 +27,8 @@ export class IndexContainer extends React.Component<ContainerProps, ContainerSta
      */
     constructor(props: ContainerProps, ctx?: any) {
         super(props, ctx);
+        console.log("__CONTAINER_STATE*******" + JSON.stringify(this.props.article));
+
     }
 
     /**
