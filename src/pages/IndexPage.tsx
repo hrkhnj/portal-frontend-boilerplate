@@ -8,9 +8,14 @@
 // import "./_bootstrap";
 import { connect } from "react-redux";
 import { Store, AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { RootState } from "../shared/stores/RootState";
 import { IndexContainer } from "../shared/components/containers/IndexContainer";
 import { ArticleAction, loadedAction } from "../shared/stores/articles/ArticleAction";
+
+interface StoreWithThunk<S> extends Store<S> {
+    dispatch: ThunkDispatch<S, null, AnyAction>;
+}
 
 /**
  * 本体
@@ -31,7 +36,7 @@ export default connect(state => state)(class extends IndexContainer {
      * @returns Promise<any> props
      */
     public static async getInitialProps(
-        { store, isServer }: { store: Store<RootState>, isServer: boolean }): Promise<any> {
+        { store, isServer }: { store: StoreWithThunk<RootState>; isServer: boolean }): Promise<any> {
 
         console.log(store.getState());
 
